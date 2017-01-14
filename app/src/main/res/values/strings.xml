@@ -3,4 +3,6 @@
     <string name="title_timeline">TL</string>
     <string name="title_local">storage</string>
     <string name="title_twitter">twitter</string>
+    <string name="card_view_image_content">cardView Image</string>
+    <string name="example_date">xxxx/yy/zz</string>
 </resources>
