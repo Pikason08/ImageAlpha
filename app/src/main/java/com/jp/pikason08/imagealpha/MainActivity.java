@@ -1,6 +1,7 @@
 package com.jp.pikason08.imagealpha;
 
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,9 +24,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        initView();
     }
 
     private void initView(){
-        toolbar
+        setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        FragmentManager manager = getSupportFragmentManager();
+        MainPagerAdapter adapter = new MainPagerAdapter(manager);
+        viewPager.setAdapter(adapter);
+        tabLayout.setTabTextColors(getResources().getColor(R.color.unselect_tab), getResources().getColor(R.color.white));
+        tabLayout.setupWithViewPager(viewPager);
     }
 }
