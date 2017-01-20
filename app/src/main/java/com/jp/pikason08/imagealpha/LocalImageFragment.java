@@ -3,6 +3,7 @@ package com.jp.pikason08.imagealpha;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,14 +14,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by keigo on 2017/01/14.
  */
 
-public class LocalImageFragment extends Fragment{
+public class LocalImageFragment extends Fragment
+        implements SwipeRefreshLayout.OnRefreshListener{
 
-    private RecyclerView recyclerView;
+
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.recycler_view_local)
+    RecyclerView recyclerView;
     private List<LocalData> localData = new ArrayList<>();
 
     protected final static int COLUMN_NUM = 3;
@@ -35,11 +42,16 @@ public class LocalImageFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_local_image, null);
+        ButterKnife.bind(this, view);
         initViews(view);
         return view;
     }
 
     private void initViews(View view){
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.refresh_color1),
+                getResources().getColor(R.color.refresh_color2),
+                getResources().getColor(R.color.refresh_color3),
+                getResources().getColor(R.color.refresh_color4));
         recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view_local);
         LocalRecyclerAdapter adapter = new LocalRecyclerAdapter(getContext(), localData);
         RecyclerView.LayoutManager manager = new GridLayoutManager(getActivity(), COLUMN_NUM);
@@ -55,5 +67,10 @@ public class LocalImageFragment extends Fragment{
             data.setLocalImage(null);
             localData.add(data);
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        //TODO: add swipe action
     }
 }

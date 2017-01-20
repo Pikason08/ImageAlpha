@@ -5,4 +5,9 @@
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFFFF</color>
     <color name="unselect_tab">#808080</color>
+
+    <color name="refresh_color1">#4CAF50</color>
+    <color name="refresh_color2">#F44336</color>
+    <color name="refresh_color3">#3F51B5</color>
+    <color name="refresh_color4">#FFEB3B</color>
 </resources>
