@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
  */
 
 public class LocalImageFragment extends Fragment
-        implements SwipeRefreshLayout.OnRefreshListener{
+        implements SwipeRefreshLayout.OnRefreshListener {
 
 
     @BindView(R.id.swipe_refresh_layout)
@@ -47,23 +47,28 @@ public class LocalImageFragment extends Fragment
         return view;
     }
 
-    private void initViews(View view){
+    private void initViews(View view) {
         swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.refresh_color1),
                 getResources().getColor(R.color.refresh_color2),
                 getResources().getColor(R.color.refresh_color3),
                 getResources().getColor(R.color.refresh_color4));
-        recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view_local);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_local);
         LocalRecyclerAdapter adapter = new LocalRecyclerAdapter(getContext(), localData);
         RecyclerView.LayoutManager manager = new GridLayoutManager(getActivity(), COLUMN_NUM);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
+        adapter.setItemClick(new LocalRecyclerAdapter.OnClickItemListener() {
+            @Override
+            public void onClick(View view, int position) {
+            }
+        });
     }
 
-    private void createDummy(){
-        for (int i = 0;i < 15;i++){
+    private void createDummy() {
+        for (int i = 0; i < 15; i++) {
             LocalData data = new LocalData();
             data.setId(i);
-            data.setDate("201"+i+"/xx/yy");
+            data.setDate("201" + i + "/xx/yy");
             data.setLocalImage(null);
             localData.add(data);
         }

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -18,6 +19,7 @@ import java.util.List;
 public class LocalRecyclerAdapter extends RecyclerView.Adapter<LocalRecyclerAdapter.ViewHolder> {
     private List<LocalData> dataList;
     private Context context;
+    private OnClickItemListener listener;
 
     public LocalRecyclerAdapter(Context context, List<LocalData> dataList) {
         super();
@@ -42,12 +44,9 @@ public class LocalRecyclerAdapter extends RecyclerView.Adapter<LocalRecyclerAdap
             @Override
             public void onClick(View v) {
                 //TODO: click action
+                listener.onClick(v, position);
             }
         });
-    }
-
-    public interface setItemClick{
-        void onItemClick();
     }
 
     @Override
@@ -55,6 +54,14 @@ public class LocalRecyclerAdapter extends RecyclerView.Adapter<LocalRecyclerAdap
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View v = layoutInflater.inflate(R.layout.item_recycler_view_local, parent, false);
         return new ViewHolder(v);
+    }
+
+    public void setItemClick(OnClickItemListener listener){
+        this.listener = listener;
+    }
+
+    public interface OnClickItemListener{
+        void onClick(View view, int position);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
