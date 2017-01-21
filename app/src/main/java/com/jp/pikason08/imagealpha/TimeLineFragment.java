@@ -8,11 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
 
 import static android.support.v7.widget.RecyclerView.*;
 
@@ -22,15 +21,7 @@ import static android.support.v7.widget.RecyclerView.*;
 
 public class TimeLineFragment extends Fragment{
 
-    //TODO: ダミー用リスト
     List<TimeLine> dataList = new ArrayList<>();
-    public TimeLineFragment(){
-
-    }
-
-    public static void newInstance(){
-
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,13 +43,28 @@ public class TimeLineFragment extends Fragment{
         TimeLineRecyclerAdapter adapter = new TimeLineRecyclerAdapter(getContext(), dataList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+        adapter.setCardClick(new TimeLineRecyclerAdapter.OnClickCardListener() {
+            @Override
+            public void onClick(View view, int position) {
+                //TODO: add action click layout
+            }
+        });
+        adapter.setCardButtonClick(new TimeLineRecyclerAdapter.onClickCardButtonListener() {
+            @Override
+            public void onClick(View view, int position) {
+                //TODO: add action click button
+            }
+        });
     }
 
-    private void createDummy(){
-        TimeLine timeLine = new TimeLine();
-        timeLine.setDate("20xx/12/01");
-        timeLine.setId(0);
-        timeLine.setLocation("https://pixabay.com/ja/%E3%83%95%E3%82%AF%E3%83%AD%E3%82%A6-%E3%83%A1%E3%82%BF%E3%83%A9%E3%82%A4%E3%82%B6-png-%E3%82%A2%E3%83%BC%E3%83%88-%E3%82%AC%E3%83%A9%E3%82%B9-%E5%B7%A5%E5%A0%B4-1791700/");
-        dataList.add(timeLine);
+    private void createDummy() {
+        for (int i = 0; i < 10; i++) {
+            TimeLine timeLine = new TimeLine();
+            timeLine.setImageType(0);
+            timeLine.setDate("20xx/12/01");
+            timeLine.setId(0);
+            timeLine.setUrl("https://cdn.pixabay.com/photo/2017/01/14/10/56/taste-1979268_1280.jpg");
+            dataList.add(timeLine);
+        }
     }
 }

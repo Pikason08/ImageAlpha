@@ -1,21 +1,43 @@
 package com.jp.pikason08.imagealpha;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by keigo on 2017/01/14.
  */
 
 public class TimeLine {
 
-    private String location;
+    //url: 0, local: 1
+    private int imageType;
+    private String url;
+    private Bitmap bitmap;
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
+
     private int id;
     private String date;
 
-    public String getLocation() {
-        return location;
+    public int getImageType() {
+        return imageType;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setImageType(int imageType) {
+        this.imageType = imageType;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public int getId() {
