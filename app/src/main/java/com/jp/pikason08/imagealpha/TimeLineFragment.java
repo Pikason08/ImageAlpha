@@ -21,7 +21,6 @@ import static android.support.v7.widget.RecyclerView.*;
 
 public class TimeLineFragment extends Fragment{
 
-    //TODO: ダミー用リスト
     List<TimeLine> dataList = new ArrayList<>();
 
     @Override
@@ -48,6 +47,12 @@ public class TimeLineFragment extends Fragment{
             @Override
             public void onClick(View view, int position) {
                 //TODO: add action click layout
+            }
+        });
+        adapter.setCardButtonClick(new TimeLineRecyclerAdapter.onClickCardButtonListener() {
+            @Override
+            public void onClick(View view, int position) {
+                //TODO: add action click button
             }
         });
     }

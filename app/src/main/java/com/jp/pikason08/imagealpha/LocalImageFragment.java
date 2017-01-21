@@ -75,5 +75,6 @@ public class LocalImageFragment extends Fragment
     @Override
     public void onRefresh() {
         //TODO: add swipe action
+        createDummy();
     }
 }

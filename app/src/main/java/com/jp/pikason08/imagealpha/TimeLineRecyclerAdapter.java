@@ -23,6 +23,7 @@ public class TimeLineRecyclerAdapter extends RecyclerView.Adapter<TimeLineRecycl
     private List<TimeLine> dataList;
     private Context context;
     private OnClickCardListener listener;
+    private onClickCardButtonListener buttonListener;
 
     public TimeLineRecyclerAdapter(Context context, List<TimeLine> dataList) {
         super();
@@ -40,6 +41,7 @@ public class TimeLineRecyclerAdapter extends RecyclerView.Adapter<TimeLineRecycl
         if (dataList.get(position).getImageType() == 0) {
             Picasso.with(context)
                     .load(dataList.get(position).getUrl())
+                    .placeholder(R.drawable.ic_account_circle_white_24dp)
                     .into(vh.cardImage);
         } else {
             vh.cardImage.setImageBitmap(dataList.get(position).getBitmap());
@@ -50,10 +52,24 @@ public class TimeLineRecyclerAdapter extends RecyclerView.Adapter<TimeLineRecycl
                 listener.onClick(v, position);
             }
         });
+        vh.favoriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonListener.onClick(v, position);
+            }
+        });
     }
 
     public void setCardClick(OnClickCardListener listener) {
         this.listener = listener;
+    }
+
+    public void setCardButtonClick(onClickCardButtonListener buttonListener) {
+        this.buttonListener = buttonListener;
+    }
+
+    public interface onClickCardButtonListener {
+        void onClick(View view, int position);
     }
 
     public interface OnClickCardListener {
