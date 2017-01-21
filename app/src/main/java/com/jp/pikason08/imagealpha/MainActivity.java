@@ -16,15 +16,6 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.tab_layout)
-    TabLayout tabLayout;
-    @BindView(R.id.view_pager)
-    ViewPager viewPager;
-    @BindView(R.id.float_button)
-    FloatingActionButton favButton;
-
     protected static final int REQUEST_CAPTURE_IMAGE = 100;
 
     @Override
@@ -37,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
+        TabLayout tabLayout = (TabLayout)findViewById(R.id.tab_layout);
+        FloatingActionButton favButton = (FloatingActionButton)findViewById(R.id.float_button);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         FragmentManager manager = getSupportFragmentManager();

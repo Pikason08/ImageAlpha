@@ -24,10 +24,6 @@ public class LocalImageFragment extends Fragment
         implements SwipeRefreshLayout.OnRefreshListener {
 
 
-    @BindView(R.id.swipe_refresh_layout)
-    SwipeRefreshLayout swipeRefreshLayout;
-    @BindView(R.id.recycler_view_local)
-    RecyclerView recyclerView;
     private List<LocalData> localData = new ArrayList<>();
 
     protected final static int COLUMN_NUM = 3;
@@ -48,6 +44,8 @@ public class LocalImageFragment extends Fragment
     }
 
     private void initViews(View view) {
+        SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipe_refresh_layout);
+        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view_local);
         swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.refresh_color1),
                 getResources().getColor(R.color.refresh_color2),
                 getResources().getColor(R.color.refresh_color3),
