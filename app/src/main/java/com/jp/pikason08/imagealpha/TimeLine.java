@@ -11,7 +11,17 @@ public class TimeLine {
     //url: 0, local: 1
     private int imageType;
     private String url;
+
+    public boolean isFavoriteState() {
+        return favoriteState;
+    }
+
+    public void setFavoriteState(boolean favoriteState) {
+        this.favoriteState = favoriteState;
+    }
+
     private Bitmap bitmap;
+    private boolean favoriteState;
 
     public Bitmap getBitmap() {
         return bitmap;

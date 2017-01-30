@@ -8,7 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,7 @@ import static android.support.v7.widget.RecyclerView.*;
  * Created by keigo on 2017/01/14.
  */
 
-public class TimeLineFragment extends Fragment{
+public class TimeLineFragment extends Fragment {
 
     List<TimeLine> dataList = new ArrayList<>();
 
@@ -37,8 +39,8 @@ public class TimeLineFragment extends Fragment{
         return view;
     }
 
-    private void initViews(View view){
-        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view_time_line);
+    private void initViews(View view) {
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_time_line);
         LayoutManager layoutManager = new LinearLayoutManager(getContext());
         TimeLineRecyclerAdapter adapter = new TimeLineRecyclerAdapter(getContext(), dataList);
         recyclerView.setLayoutManager(layoutManager);
@@ -51,8 +53,18 @@ public class TimeLineFragment extends Fragment{
         });
         adapter.setCardButtonClick(new TimeLineRecyclerAdapter.onClickCardButtonListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void onClick(View view, int position, boolean state) {
                 //TODO: add action click button
+                ImageView favoButton = (ImageView) view.findViewById(R.id.card_view_favorite);
+                if (state) {
+                    favoButton.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+                    dataList.get(position).setFavoriteState(false);
+                } else {
+                    favoButton.setImageResource(R.drawable.ic_favorite_red_700_24dp);
+                    dataList.get(position).setFavoriteState(true);
+                }
+                Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.touch);
+                view.startAnimation(animation);
             }
         });
     }
