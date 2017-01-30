@@ -69,6 +69,7 @@ public class TimeLineFragment extends Fragment {
         });
     }
 
+    //TODO: change dummy
     private void createDummy() {
         for (int i = 0; i < 10; i++) {
             TimeLine timeLine = new TimeLine();
