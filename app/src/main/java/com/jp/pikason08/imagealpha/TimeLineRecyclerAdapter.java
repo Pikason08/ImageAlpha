@@ -52,10 +52,15 @@ public class TimeLineRecyclerAdapter extends RecyclerView.Adapter<TimeLineRecycl
                 listener.onClick(v, position);
             }
         });
-        vh.favoriteButton.setOnClickListener(new View.OnClickListener() {
+        if (dataList.get(position).isFavoriteState()) {
+            vh.favoImage.setImageResource(R.drawable.ic_favorite_red_700_24dp);
+        } else {
+            vh.favoImage.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+        }
+        vh.favoImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonListener.onClick(v, position);
+                buttonListener.onClick(v, position, dataList.get(position).isFavoriteState());
             }
         });
     }
@@ -69,7 +74,7 @@ public class TimeLineRecyclerAdapter extends RecyclerView.Adapter<TimeLineRecycl
     }
 
     public interface onClickCardButtonListener {
-        void onClick(View view, int position);
+        void onClick(View view, int position, boolean state);
     }
 
     public interface OnClickCardListener {
@@ -88,14 +93,14 @@ public class TimeLineRecyclerAdapter extends RecyclerView.Adapter<TimeLineRecycl
         CardView cardView;
         ImageView cardImage;
         TextView dateText;
-        Button favoriteButton;
+        ImageView favoImage;
 
         public ViewHolder(View v) {
             super(v);
             cardView = (CardView) v.findViewById(R.id.card_view);
             cardImage = (ImageView) v.findViewById(R.id.card_view_image);
             dateText = (TextView) v.findViewById(R.id.card_view_date);
-            favoriteButton = (Button) v.findViewById(R.id.card_view_favorite);
+            favoImage = (ImageView) v.findViewById(R.id.card_view_favorite);
         }
     }
 }
